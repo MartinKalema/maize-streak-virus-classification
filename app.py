@@ -6,7 +6,7 @@ from keras.models import load_model
 import numpy as np
 
 
-class_names = ["Healthy", "Maize Leaf Blight"]
+class_names = ["Healthy", "Maize Streak Virus"]
 
 def load_best_model():
     return load_model('artifacts/model.h5')
@@ -39,5 +39,5 @@ else:
     st.image(image, use_column_width=True)
     predictions = import_and_predict(image, best_model)
     score = tf.nn.softmax(predictions[0])
-    result_text = "This image most likely belongs to the {} class.".format(class_names[np.argmax(score)])
-    st.write(result_text)
+    result_text = "This image most likely belongs to the <b>{}</b> class.".format(class_names[np.argmax(score)])
+    st.markdown(result_text, unsafe_allow_html=True)

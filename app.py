@@ -39,5 +39,6 @@ else:
     st.image(image, use_column_width=True)
     predictions = import_and_predict(image, best_model)
     score = tf.nn.softmax(predictions[0])
+    st.write(score)
     result_text = "This image most likely belongs to the <b>{}</b> class.".format(class_names[np.argmax(score)])
     st.markdown(result_text, unsafe_allow_html=True)
